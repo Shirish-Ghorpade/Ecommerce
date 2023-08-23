@@ -1,0 +1,117 @@
+@import "../../css-config/mixins.scss";
+
+.main-header {
+  width: 100%;
+  // top-bottom left-right
+  padding: 0 20px;
+  z-index: 99;
+  background-color: #212121;
+  color: white;
+  border-bottom: 1px solid;
+  //   4th property is obacity
+  border-color: rgba(0, 0, 0, 0.1);
+  @include md {
+    padding: 0 40px;
+  }
+  //   nested styling it is inside main-header
+  .header-content {
+    // Learn flex
+    display: flex;
+    // navbar have 3 elements so divide them in equal space
+    justify-content: space-between;
+    // from top and bottom center align it
+    align-items: center;
+    height: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    @include md {
+      height: 80px;
+    }
+  }
+  .left {
+    // we remove the pointer of <li> tag
+    list-style-type: none;
+    display: none;
+    gap: 25px;
+    @include md {
+      display: flex;
+    }
+    li {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+  }
+  .center {
+    font-size: 22px;
+    font-weight: 700;
+    cursor: pointer;
+    @include md {
+      font-size: 34px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  .right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    @include md {
+      gap: 25px;
+    }
+    // apply css on the react icon
+    svg {
+      font-size: 20px;
+      cursor: pointer;
+      @include md {
+        font-size: 24px;
+      }
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+    // Updating count == selecting products
+    .cart-icon {
+      position: relative;
+      span {
+        min-width: 20px;
+        text-align: center;
+        background: #8e2de2;
+        padding: 2.5px;
+        position: absolute;
+        top: -5px;
+        right: -12px;
+        font-size: 12px;
+        line-height: 1;
+        border-radius: 10px;
+      }
+    }
+  }
+  // Adding css to sticky-header when header is satisfy the conditions
+  &.sticky-header {
+    background-color: #212121;
+    color: white;
+    position: sticky;
+    top: 0;
+    // Best Pratice the same like add in 0% in below code add here also
+    transform: translateY(-60px);
+    // Adding animation
+    animation: StickyHeader 0.3s ease forwards;
+  }
+}
+
+// Adding transitions : navbar is look-like little bit upward
+// A transition occurs when a CSS property changes from one value to another value over a period of time.
+@keyframes StickyHeader {
+  0% {
+    transform: translateY(-60px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
